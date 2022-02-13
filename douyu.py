@@ -181,4 +181,4 @@ if __name__ == '__main__':
     douyu = Douyu()
     res = douyu.pay()
     print(res)
-    send_message('斗鱼赠送荧光棒通知:',res)
+    send_message('斗鱼赠送荧光棒通知:',str(res))
