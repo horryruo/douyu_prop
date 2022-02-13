@@ -2,4 +2,3 @@ requests
 lxml
 selenium
 pyvirtualdisplay
-jsonpath
