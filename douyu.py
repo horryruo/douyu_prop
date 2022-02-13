@@ -133,7 +133,7 @@ class Chrome(object):
         self.dr.get('https://www.douyu.com/directory/myFollow')
         self.dr.delete_all_cookies()
         douyu_cookies = get_secrets("DOUYU")
-        cookies_list = json.load(douyu_cookies)
+        cookies_list = json.loads(douyu_cookies)
         for cookie in cookies_list:
             if 'expiry' in cookie:
                 del cookie['expiry']
@@ -154,7 +154,7 @@ class Douyu(object):
         'x-requested-with':'XMLHttpRequest',
     }
         douyu_cookies = get_secrets("DOUYU")
-        cookies_list = json.load(douyu_cookies)
+        cookies_list = json.loads(douyu_cookies)
         cookies = dict()
         for i in cookies_list:
             cookies[i.get('name')] = i.get('value')
