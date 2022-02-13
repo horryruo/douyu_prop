@@ -78,7 +78,7 @@ def send_message(title,content):
 
 class Douyu_chrome(object):
     def __init__(self):
-        self.engine = Chrome(False,'https://www.douyu.com/687423')
+        self.engine = Chrome(True,'https://www.douyu.com/687423')
 
     def auto(self):
         #滚动到背包
