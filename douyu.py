@@ -173,7 +173,7 @@ class Douyu(object):
              "propCount": '60',
              "roomId":'687423',
              'bizExt':'{"yzxq":{}}'}).content
-            res = json.loads(response.decode("utf-8", "ignore")).get('msg')
+            res = json.loads(response.decode("utf-8", "ignore"))
             return res
 if __name__ == '__main__':
     douyu_chrome = Douyu_chrome()
