@@ -20,8 +20,6 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: 3.7
-      - name: 'Install chrome'
-        run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo apt install ./google-chrome-stable_current_amd64.deb
       - name: 'Install requirements'
         run: pip install -r requirements.txt
       - name: 'Set driver'
