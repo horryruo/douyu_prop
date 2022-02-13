@@ -1,0 +1,34 @@
+name: Daily donate
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+  schedule:
+    - cron: '30 2 * * *'
+
+jobs:
+  dy_auto_donate_helper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name: Set time zone
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: 'Install requirements'
+        run: pip install -r requirements.txt
+      - name: 'Set driver'
+        run: sudo chmod -R 777 ./chrome/chromedriver
+      - name: 'Working'
+        env:
+          WECOM: ${{ secrets.WECOM}}
+          DOUYU: ${{ secrets.DOUYU }}
+        run: |
+          sudo cp -p ./chrome/chromedriver /usr/bin/
+          chmod -R 777 /usr/bin/chromedriver
+          python douyu.py
