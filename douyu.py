@@ -9,7 +9,10 @@ from selenium.webdriver.common.by import By
 
 def get_secrets(item):
     return os.environ[item]
-
+class Func:
+    def __init__(self):
+        self.cookies = None
+func = Func()
 #corpid,corpsecret,agentid,mediaid
 class Wecom(object):
     def __init__(self,wecom_cid,wecom_secret,wecom_aid,media_id=None,wecom_touid='@all'):
@@ -101,7 +104,7 @@ class Douyu_chrome(object):
         back = self.engine.dr.find_element(By.CSS_SELECTOR,"[class='Backpack JS_Backpack']")
         #背包界面存在
         if back:
-            print('成功领取荧光棒')
+            print('成功打开背包')
         self.engine.dr.quit()
 class Chrome(object):
     def __init__(self,is_headless,url):
@@ -141,6 +144,8 @@ class Chrome(object):
                 del cookie['sameSite']
             self.dr.add_cookie(cookie)
         self.dr.refresh()
+        time.sleep(2)
+        func.cookies = self.dr.get_cookies()
         self.dr.implicitly_wait(5)
 
 
@@ -170,15 +175,27 @@ class Douyu(object):
             url = 'https://www.douyu.com/japi/prop/donate/mainsite/v1'
             self.session.headers.update(self.headers)
             response = self.session.post(url,params={"propId": '268',
-             "propCount": '60',
-             "roomId":'687423',
-             'bizExt':'{"yzxq":{}}'}).content
+                                                    "propCount": '60',
+                                                    "roomId":'687423',
+                                                    'bizExt':'{"yzxq":{}}'}).content
             res = json.loads(response.decode("utf-8", "ignore"))
-            return res
+            msg = json.loads(response.decode("utf-8", "ignore")).get('msg')
+            if msg == '请登录':
+                cookies = dict()
+                for i in func.cookies:
+                    cookies[i.get('name')] = i.get('value')
+                    self.session.cookies.update(cookies)
+                response = self.session.post(url,params={"propId": '268',
+                                                        "propCount": '60',
+                                                        "roomId":'687423',
+                                                        'bizExt':'{"yzxq":{}}'}).content
+                res = json.loads(response.decode("utf-8", "ignore"))
+                msg = json.loads(response.decode("utf-8", "ignore")).get('msg')
+            return msg,res
 if __name__ == '__main__':
     douyu_chrome = Douyu_chrome()
     douyu_chrome.auto()
     douyu = Douyu()
-    res = douyu.pay()
+    msg,res = douyu.pay()
     print(res)
-    send_message('斗鱼赠送荧光棒通知:',str(res))
+    send_message('斗鱼赠送荧光棒通知:'+str(msg),str(res))
