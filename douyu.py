@@ -144,7 +144,6 @@ class Chrome(object):
                 del cookie['sameSite']
             self.dr.add_cookie(cookie)
         self.dr.refresh()
-        time.sleep(2)
         func.cookies = self.dr.get_cookies()
         self.dr.implicitly_wait(5)
 
