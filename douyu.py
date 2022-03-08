@@ -128,7 +128,8 @@ class Chrome(object):
             self.dr = webdriver.Chrome(executable_path="chrome/chromedriver.exe", options=chrome_options)
         elif "linux" in sys.platform:
             try:
-                self.dr = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+                self.dr = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+                #self.dr = webdriver.Chrome(ChromeDriverManager().install(),options=chrome_options)
                 #self.dr = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
             except Exception as e:
                 print(e)
