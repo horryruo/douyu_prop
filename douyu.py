@@ -130,7 +130,8 @@ class Chrome(object):
             try:
                 self.dr = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
                 #self.dr = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
-            except:
+            except Exception as e:
+                print(e)
                 self.dr = webdriver.Chrome(options=chrome_options)
         self.dr.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
             'source': 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'
