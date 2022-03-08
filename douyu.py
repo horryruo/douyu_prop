@@ -4,7 +4,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def get_secrets(item):
@@ -126,7 +127,8 @@ class Chrome(object):
         if "win" in sys.platform:
             self.dr = webdriver.Chrome(executable_path="chrome/chromedriver.exe", options=chrome_options)
         elif "linux" in sys.platform:
-            self.dr = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
+            self.dr = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+            #self.dr = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
         else:
             self.dr = webdriver.Chrome(options=chrome_options)
         self.dr.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
