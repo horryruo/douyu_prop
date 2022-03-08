@@ -127,10 +127,11 @@ class Chrome(object):
         if "win" in sys.platform:
             self.dr = webdriver.Chrome(executable_path="chrome/chromedriver.exe", options=chrome_options)
         elif "linux" in sys.platform:
-            self.dr = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-            #self.dr = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
-        else:
-            self.dr = webdriver.Chrome(options=chrome_options)
+            try:
+                self.dr = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+                #self.dr = webdriver.Chrome(executable_path="chrome/chromedriver", options=chrome_options)
+            except:
+                self.dr = webdriver.Chrome(options=chrome_options)
         self.dr.execute_cdp_cmd('Page.addScriptToEvaluateOnNewDocument', {
             'source': 'Object.defineProperty(navigator, "webdriver", {get: () => undefined})'
         })
