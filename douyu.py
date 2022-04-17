@@ -23,7 +23,9 @@ def get_secrets(item):
             dict['value'] = spp[1]
             dict['domain'] = 'www.douyu.com'
             dict['path'] = '/'
-            #dict['expirationDate'] = time.time()
+            dict['expirationDate'] = time.time()
+            dict['session'] = False
+            dict['storeId'] = "0"
             dict['httpOnly'] =  False
             dict['HostOnly'] =  False
             dict['Secure'] =  False
