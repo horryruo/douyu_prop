@@ -17,24 +17,25 @@ def get_secrets(item):
         sp = cookies.split(';')
         list = []
         for number, i in enumerate(sp):
-            dict = {}
+            #dict = {}
             spp = i.split('=')
-            #if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
-             #   dict['domain'] = '.douyu.com'
-            #else:
-            dict['domain'] = '.douyu.com'
+            cook = {
+                "name" :spp[0],
+                "value":spp[1],
+            }
+            #dict['domain'] = '.douyu.com'
             #dict['expirationDate'] = time.time()
             #dict['hostOnly'] =  False
             #dict['HttpOnly'] =  True
-            dict['expires'] =  ""
-            dict['name'] = spp[0]
-            dict['path'] = '/'
+            #dict['expires'] =  ""
+            #dict['name'] = spp[0]
+            #dict['path'] = '/'
             #dict['Secure'] =  False
             #dict['session'] = False
             #dict['storeId'] = "0"
-            dict['value'] = spp[1]
+            #dict['value'] = spp[1]
             #dict['id'] =  number
-            list.append(dict)
+            list.append(cook)
         list = json.dumps(list)
         return list
 cookies_os = get_secrets("DOUYU")
