@@ -26,7 +26,7 @@ def get_secrets(item):
             dict['expirationDate'] = time.time()
             dict['session'] = 'false'
             dict['storeId'] = "0"
-            dict['httpOnly'] =  'false'
+            dict['HttpOnly'] =  'false'
             dict['HostOnly'] =  'false'
             dict['Secure'] =  'false'
          
