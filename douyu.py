@@ -21,6 +21,8 @@ def get_secrets(item):
             spp = i.split('=')
             dict['name'] = spp[0]
             dict['value'] = spp[1]
+            dict['domain'] = 'www.douyu.com'
+            
             list.append(dict)
         list = json.dumps(list)
         return list
