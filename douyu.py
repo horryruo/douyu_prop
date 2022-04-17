@@ -177,6 +177,7 @@ class Chrome(object):
                 del cookie['expiry']
             if 'sameSite' in cookie:
                 del cookie['sameSite']
+            print(cookie)
             self.dr.add_cookie(cookie)
         self.dr.refresh()
         func.cookies = self.dr.get_cookies()
