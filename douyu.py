@@ -19,20 +19,21 @@ def get_secrets(item):
         for number, i in enumerate(sp):
             dict = {}
             spp = i.split('=')
-            if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
-                dict['domain'] = '.douyu.com'
-            else:
-                dict['domain'] = 'www.douyu.com'
-            dict['expirationDate'] = time.time()
+            #if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
+             #   dict['domain'] = '.douyu.com'
+            #else:
+            dict['domain'] = '.douyu.com'
+            #dict['expirationDate'] = time.time()
             dict['hostOnly'] =  False
             dict['httpOnly'] =  True
+            dict['"expires'] =  ""
             dict['name'] = spp[0]
             dict['path'] = '/'
             dict['Secure'] =  False
-            dict['session'] = False
-            dict['storeId'] = "0"
+            #dict['session'] = False
+            #dict['storeId'] = "0"
             dict['value'] = spp[1]
-            dict['id'] =  number
+            #dict['id'] =  number
             list.append(dict)
         list = json.dumps(list)
         return list
