@@ -20,8 +20,8 @@ def get_secrets(item):
             #dict = {}
             spp = i.split('=')
             cook = {
-                "name" :spp[0],
-                "value":spp[1],
+                "name" :spp[0].strip(),
+                "value":spp[1].strip(),
                 "domain":".douyu.com"
             }
             #dict['domain'] = '.douyu.com'
