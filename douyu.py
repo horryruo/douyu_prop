@@ -22,14 +22,14 @@ def get_secrets(item):
             #if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
              #   dict['domain'] = '.douyu.com'
             #else:
-            dict['domain'] = '.douyu.com'
+            #dict['domain'] = '.douyu.com'
             #dict['expirationDate'] = time.time()
-            dict['hostOnly'] =  False
-            dict['httpOnly'] =  True
-            dict['"expires'] =  ""
+            #dict['hostOnly'] =  False
+            #dict['HttpOnly'] =  True
+            #dict['"expires'] =  ""
             dict['name'] = spp[0]
-            dict['path'] = '/'
-            dict['Secure'] =  False
+            #dict['path'] = '/'
+            #dict['Secure'] =  False
             #dict['session'] = False
             #dict['storeId'] = "0"
             dict['value'] = spp[1]
