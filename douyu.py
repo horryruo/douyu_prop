@@ -21,14 +21,14 @@ def get_secrets(item):
             spp = i.split('=')
             dict['name'] = spp[0]
             dict['value'] = spp[1]
-            dict['domain'] = 'www.douyu.com'
+            dict['domain'] = '.douyu.com'
             dict['path'] = '/'
-            dict['expirationDate'] = time.time()
-            dict['session'] = 'false'
+            dict['session'] = False
             dict['storeId'] = "0"
-            dict['HttpOnly'] =  'false'
-            dict['HostOnly'] =  'false'
-            dict['Secure'] =  'false'
+            dict['expirationDate'] = time.time()
+            dict['httpOnly'] =  True
+            dict['hostOnly'] =  False
+            dict['Secure'] =  False
          
             list.append(dict)
         list = json.dumps(list)
