@@ -85,7 +85,7 @@ class Wecom(object):
             return False
 
 def send_message(title,content):
-    secret_key = os.environ[WECOM]
+    secret_key = os.environ['WECOM']
     idd = secret_key.split(',')
     wecom = Wecom(idd[0],idd[1],idd[2],idd[3])
     try:
