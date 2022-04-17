@@ -22,6 +22,7 @@ def get_secrets(item):
             cook = {
                 "name" :spp[0],
                 "value":spp[1],
+                "domain":".douyu.com"
             }
             #dict['domain'] = '.douyu.com'
             #dict['expirationDate'] = time.time()
