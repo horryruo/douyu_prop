@@ -24,7 +24,7 @@ def get_secrets(item):
             else:
                 dict['domain'] = 'www.douyu.com'
             #dict['domain'] = 'www.douyu.com'
-            dict['expirationDate'] = time.time()
+            #dict['expirationDate'] = time.time()
             dict['hostOnly'] =  False
             dict['HttpOnly'] =  True
             dict['expires'] =  ""
