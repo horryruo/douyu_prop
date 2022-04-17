@@ -24,6 +24,7 @@ def get_secrets(item):
             list.append(dict)
         list = json.dumps(list)
         return list
+cookies_os = get_secrets("DOUYU")
 class Func:
     def __init__(self):
         self.cookies = None
@@ -154,7 +155,7 @@ class Chrome(object):
         self.wait = WebDriverWait(self.dr, 30)
         self.dr.get('https://www.douyu.com/directory/myFollow')
         self.dr.delete_all_cookies()
-        douyu_cookies = get_secrets("DOUYU")
+        douyu_cookies = cookies_os
         cookies_list = json.loads(douyu_cookies)
         for cookie in cookies_list:
             if 'expiry' in cookie:
@@ -176,7 +177,7 @@ class Douyu(object):
         'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7',
         'x-requested-with':'XMLHttpRequest',
     }
-        douyu_cookies = get_secrets("DOUYU")
+        douyu_cookies = cookies_os
         cookies_list = json.loads(douyu_cookies)
         cookies = dict()
         for i in cookies_list:
