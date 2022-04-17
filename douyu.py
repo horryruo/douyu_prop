@@ -19,7 +19,7 @@ def get_secrets(item):
         for number, i in enumerate(sp):
             dict = {}
             spp = i.split('=')
-            dict['domain'] = '.douyu.com'
+            dict['domain'] = 'www.douyu.com'
             dict['expirationDate'] = time.time()
             dict['hostOnly'] =  False
             dict['httpOnly'] =  True
