@@ -9,7 +9,21 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def get_secrets(item):
-    return os.environ[item]
+    cookies =  os.environ[item]
+    try:
+        coo = json.loads(cookies)
+        return cookies
+    except:
+        sp = cookies.split(';')
+        list = []
+        for i in sp:
+            dict = {}
+            spp = i.split('=')
+            dict['name'] = spp[0]
+            dict['value'] = spp[1]
+            list.append(dict)
+        list = json.dumps(list)
+        return list
 class Func:
     def __init__(self):
         self.cookies = None
