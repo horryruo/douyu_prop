@@ -16,7 +16,7 @@ def get_secrets(item):
     except:
         sp = cookies.split(';')
         list = []
-        for i in sp:
+        for number, i in enumerate(sp):
             dict = {}
             spp = i.split('=')
             dict['name'] = spp[0]
@@ -29,7 +29,7 @@ def get_secrets(item):
             dict['httpOnly'] =  True
             dict['hostOnly'] =  False
             dict['Secure'] =  False
-         
+            dict['id'] =  number
             list.append(dict)
         list = json.dumps(list)
         return list
