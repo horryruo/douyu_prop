@@ -22,7 +22,10 @@ def get_secrets(item):
             dict['name'] = spp[0]
             dict['value'] = spp[1]
             dict['domain'] = 'www.douyu.com'
-            
+            dict['hostOnly'] = 'true'
+            dict['httpOnly'] = 'false'
+            dict['path'] = '/'
+            dict['expirationDate'] = time.time()
             list.append(dict)
         list = json.dumps(list)
         return list
