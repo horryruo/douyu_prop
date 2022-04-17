@@ -24,11 +24,11 @@ def get_secrets(item):
             dict['domain'] = 'www.douyu.com'
             dict['path'] = '/'
             dict['expirationDate'] = time.time()
-            dict['session'] = False
+            dict['session'] = 'false'
             dict['storeId'] = "0"
-            dict['httpOnly'] =  False
-            dict['HostOnly'] =  False
-            dict['Secure'] =  False
+            dict['httpOnly'] =  'false'
+            dict['HostOnly'] =  'false'
+            dict['Secure'] =  'false'
          
             list.append(dict)
         list = json.dumps(list)
