@@ -19,7 +19,10 @@ def get_secrets(item):
         for number, i in enumerate(sp):
             dict = {}
             spp = i.split('=')
-            dict['domain'] = 'www.douyu.com'
+            if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
+                dict['domain'] = '.douyu.com'
+            else:
+                dict['domain'] = 'www.douyu.com'
             dict['expirationDate'] = time.time()
             dict['hostOnly'] =  False
             dict['httpOnly'] =  True
