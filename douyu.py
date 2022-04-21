@@ -18,23 +18,23 @@ def get_secrets(item):
         list = []
         for number, i in enumerate(sp):
             dict = {}
-            spp = i.split('=')
-            if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
-                dict['domain'] = '.douyu.com'
-            else:
-                dict['domain'] = 'www.douyu.com'
-            #dict['domain'] = 'www.douyu.com'
+            spp = i.split('=',1)
+            #if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
+               # dict['domain'] = '.douyu.com'
+            #else:
+               # dict['domain'] = 'www.douyu.com'
+            dict['domain'] = '.douyu.com'
             #dict['expirationDate'] = time.time()
-            dict['hostOnly'] =  False
-            dict['HttpOnly'] =  True
-            dict['expires'] =  ""
+            dict['httpOnly'] =  False
+            dict['HostOnly'] =  False
+            dict['expires'] =  ''
             dict['name'] = spp[0].strip()
             dict['path'] = '/'
             dict['Secure'] =  False
-            dict['session'] = False
-            dict['storeId'] = "0"
+            #dict['session'] = False
+            #dict['storeId'] = "0"
             dict['value'] = spp[1].strip()
-            dict['id'] =  number
+            #dict['id'] =  number
             list.append(dict)
         list = json.dumps(list)
         return list
