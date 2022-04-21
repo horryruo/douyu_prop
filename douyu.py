@@ -16,27 +16,20 @@ def get_secrets(item):
     except:
         sp = cookies.split(';')
         list = []
-        for number, i in enumerate(sp):
-            dict = {}
-            spp = i.split('=',1)
-            #if spp[0] in ['dy_auth','dy_did','wan_auth37wan']:
-               # dict['domain'] = '.douyu.com'
-            #else:
-               # dict['domain'] = 'www.douyu.com'
-            dict['domain'] = '.douyu.com'
-            #dict['expirationDate'] = time.time()
-            dict['httpOnly'] =  False
-            dict['HostOnly'] =  False
-            dict['expires'] =  ''
-            dict['name'] = spp[0].strip()
-            dict['path'] = '/'
-            dict['Secure'] =  False
-            #dict['session'] = False
-            #dict['storeId'] = "0"
-            dict['value'] = spp[1].strip()
-            #dict['id'] =  number
-            list.append(dict)
-        list = json.dumps(list)
+        for i in sp:
+            name, value = i.strip().split('=', 1)
+            mycookie = {
+            'domain': '.douyu.com',
+            'name': name,
+            'value': value,
+            'expires': '',
+            'path': '/',
+            'httpOnly': False,
+            'HostOnly': False,
+            'Secure': False,
+        }
+            list.append(mycookie)
+        #list = json.dumps(list)
         return list
 cookies_os = get_secrets("DOUYU")
 class Func:
@@ -168,7 +161,7 @@ class Chrome(object):
         })
         self.wait = WebDriverWait(self.dr, 30)
         self.dr.get('https://www.douyu.com/directory/myFollow')
-        self.dr.delete_all_cookies()
+        #self.dr.delete_all_cookies()
         douyu_cookies = cookies_os
         cookies_list = json.loads(douyu_cookies)
         for cookie in cookies_list:
