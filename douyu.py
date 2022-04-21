@@ -29,7 +29,7 @@ def get_secrets(item):
             'Secure': False,
         }
             list.append(mycookie)
-        #list = json.dumps(list)
+        list = json.dumps(list)
         return list
 cookies_os = get_secrets("DOUYU")
 class Func:
