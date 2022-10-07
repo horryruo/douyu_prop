@@ -201,7 +201,7 @@ class Douyu(object):
             url = 'https://www.douyu.com/japi/prop/donate/mainsite/v1'
             self.session.headers.update(self.headers)
             response = self.session.post(url,params={"propId": '268',
-                                                    "propCount": '60',
+                                                    "propCount": '70',
                                                     "roomId":'687423',
                                                     'bizExt':'{"yzxq":{}}'}).content
             res = json.loads(response.decode("utf-8", "ignore"))
@@ -212,7 +212,7 @@ class Douyu(object):
                     cookies[i.get('name')] = i.get('value')
                     self.session.cookies.update(cookies)
                 response = self.session.post(url,params={"propId": '268',
-                                                        "propCount": '60',
+                                                        "propCount": '70',
                                                         "roomId":'687423',
                                                         'bizExt':'{"yzxq":{}}'}).content
                 res = json.loads(response.decode("utf-8", "ignore"))
