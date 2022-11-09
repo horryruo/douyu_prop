@@ -124,10 +124,13 @@ class Douyu_chrome(object):
         except:
             pass
         #背包界面
-        back = self.engine.dr.find_element(By.CSS_SELECTOR,"[class='Backpack JS_Backpack']")
+        try:
+            back = self.engine.dr.find_element(By.CSS_SELECTOR,"[class='Backpack JS_Backpack']")
         #背包界面存在
-        if back:
-            print('成功打开背包')
+            if back:
+                print('成功打开背包')
+        except:
+            print('无法打开背包，但依旧尝试赠送')
         self.engine.dr.quit()
 class Chrome(object):
     def __init__(self,is_headless,url):
