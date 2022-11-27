@@ -220,6 +220,8 @@ class Douyu(object):
                                                         'bizExt':'{"yzxq":{}}'}).content
                 res = json.loads(response.decode("utf-8", "ignore"))
                 msg = json.loads(response.decode("utf-8", "ignore")).get('msg')
+                if msg == '请登录':
+                    raise Exception("cookies已失效")
             return msg,res
 if __name__ == '__main__':
     douyu_chrome = Douyu_chrome()
