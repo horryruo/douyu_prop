@@ -197,14 +197,14 @@ class Douyu(object):
         self.session.headers.update(headers)
         self.session.cookies.update(cookies)
 
-    def pay(self):
+    def pay(self,propcount):
             self.headers['referer'] = 'https://www.douyu.com/687423'
             self.headers['content-type'] = 'application/x-www-form-urlencoded'
             self.headers['origin'] = 'https://www.douyu.com'
             url = 'https://www.douyu.com/japi/prop/donate/mainsite/v1'
             self.session.headers.update(self.headers)
             response = self.session.post(url,params={"propId": '268',
-                                                    "propCount": '105',
+                                                    "propCount": propcount,
                                                     "roomId":'687423',
                                                     'bizExt':'{"yzxq":{}}'}).content
             res = json.loads(response.decode("utf-8", "ignore"))
@@ -215,7 +215,7 @@ class Douyu(object):
                     cookies[i.get('name')] = i.get('value')
                     self.session.cookies.update(cookies)
                 response = self.session.post(url,params={"propId": '268',
-                                                        "propCount": '105',
+                                                        "propCount": propcount,
                                                         "roomId":'687423',
                                                         'bizExt':'{"yzxq":{}}'}).content
                 res = json.loads(response.decode("utf-8", "ignore"))
@@ -227,6 +227,12 @@ if __name__ == '__main__':
     douyu_chrome = Douyu_chrome()
     douyu_chrome.auto()
     douyu = Douyu()
-    msg,res = douyu.pay()
+    msg,res = douyu.pay('105')
+    if msg =='用户没有足够的道具':
+        msg,res = douyu.pay('84')
+        print('try 84')
+    if msg =='用户没有足够的道具':
+        msg,res = douyu.pay('70')
+        print('try 70')
     print(res)
     send_message('斗鱼赠送荧光棒通知:'+str(msg),str(res))
